@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/StopWait.dir/main.cpp.o  -o StopWait 

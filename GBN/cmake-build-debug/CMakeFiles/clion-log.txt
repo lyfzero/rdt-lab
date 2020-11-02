@@ -1,0 +1,9 @@
+/snap/clion/129/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/lyf/network/rdt-lab/GBN
+-- Configuring done
+CMake Error: The following variables are used in this project, but they are set to NOTFOUND.
+Please set them or make sure they are set and tested correctly in the CMake files:
+NETSIM_LIB
+    linked by target "GBN" in directory /home/lyf/network/rdt-lab/GBN
+
+-- Generating done
+CMake Generate step failed.  Build files cannot be regenerated correctly.

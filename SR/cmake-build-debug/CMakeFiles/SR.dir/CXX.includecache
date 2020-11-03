@@ -40,31 +40,19 @@ DataStructure.h
 DataStructure.h
 ../include/DataStructure.h
 
-../include/SRRdtReceiver.h
-RdtReceiver.h
-../include/RdtReceiver.h
-unordered_map
--
-
 ../include/SRRdtSender.h
 RdtSender.h
 ../include/RdtSender.h
-unordered_map
+vector
 -
 
 ../include/Tool.h
 DataStructure.h
 ../include/DataStructure.h
 
-/home/lyf/network/rdt-lab/SR/src/SR.cpp
+/home/lyf/network/rdt-lab/SR/src/SRRdtSender.cpp
 Global.h
 /home/lyf/network/rdt-lab/SR/src/Global.h
-RdtSender.h
-/home/lyf/network/rdt-lab/SR/src/RdtSender.h
-RdtReceiver.h
-/home/lyf/network/rdt-lab/SR/src/RdtReceiver.h
-SRRdtReceiver.h
-/home/lyf/network/rdt-lab/SR/src/SRRdtReceiver.h
 SRRdtSender.h
 /home/lyf/network/rdt-lab/SR/src/SRRdtSender.h
 

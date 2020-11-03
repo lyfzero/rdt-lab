@@ -12,9 +12,9 @@
 #include <fstream>
 #include <string.h>
 using namespace std;
-#define SR_N 10
-#define ACK_RCV -2
-#define ACK_UNRCV -1
+#define SR_WINDOW_SIZE 4
+#define SEQ_BIT 3
+#define MAX_SEQ (1 << SEQ_BIT)
 extern  Tool *pUtils;						//指向唯一的工具类实例，只在main函数结束前delete
 extern  NetworkService *pns;				//指向唯一的模拟网络环境类实例，只在main函数结束前delete
 

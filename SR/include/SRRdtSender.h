@@ -6,17 +6,17 @@
 #define SR_SRRDTSENDER_H
 
 #include "RdtSender.h"
-#include <unordered_map>
+#include <vector>
 class SRRdtSender :public RdtSender
 {
 private:
-    int expectSequenceNumberSend;	// 下一个发送序号
     bool waitingState;				// 是否处于等待Ack的状态
-    Packet packetWaitingAck;		//已发送并等待Ack的数据包
-
     int base;               // 滑动窗口第一个位置的序号
-    unordered_map<int, Packet> pktMap;   // 滑动窗口    
-
+    int nextSeqNum;           // 下一个发送序号
+    vector<Packet *> PktVec;
+    vector<int> PktState;
+    enum {UNKWON, RECEIVED};
+    void printWindow();
 public:
 
     bool getWaitingState();

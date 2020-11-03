@@ -6,13 +6,19 @@
 #define SR_SRRDTRECEIVER_H
 
 #include "RdtReceiver.h"
-#include <unordered_map>
+#include <vector>
 class SRRdtReceiver :public RdtReceiver
 {
 private:
-    int expectSequenceNumberRcvd;	// 期待收到的下一个报文序号
     Packet lastAckPkt;				// 上次发送的确认报文
-    unordered_map<int, Packet> recvMap;   // 缓冲区（滑动窗口）
+    vector<Packet *> PktbufferVec;
+    vector<int> PktbufferState;
+    int base;
+    enum {RECEIVED, UNKNOW};
+
+    void printWindow();
+    void push_empty_packet();
+    void copy_packet(const Packet *source, Packet *dest);
 
 public:
     SRRdtReceiver();

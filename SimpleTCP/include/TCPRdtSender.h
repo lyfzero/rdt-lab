@@ -2,19 +2,23 @@
 // Created by lyf on 2020/11/2.
 //
 
-#ifndef GBN_GBNRDTSENDER_H
-#define GBN_GBNRDTSENDER_H
+#ifndef SIMPLETCP_TCPRDTSENDER_H
+#define SIMPLETCP_TCPRDTSENDER_H
+
 #include "RdtSender.h"
-#include<vector>
-class GBNRdtSender :public RdtSender
+#include <deque>
+class TCPRdtSender :public RdtSender
 {
 private:
-    int nextSeqNum;	// 下一个发送序号
+    unsigned int expectSequenceNumberSend;	// 下一个发送序号
     bool waitingState;				// 是否处于等待Ack的状态
 
-    vector<Packet *> pktVec;         // 序号滑动窗口
-    int base;                       // 当前窗口第一个位置的序号
-    void printWindow();
+    unsigned int base;
+    deque<Packet> pktQueue;
+
+    bool timer_status;
+    int accumulate_sum;
+
 public:
 
     bool getWaitingState();
@@ -23,7 +27,8 @@ public:
     void timeoutHandler(int seqNum);					//Timeout handler，将被NetworkServiceSimulator调用
 
 public:
-    GBNRdtSender();
-    virtual ~GBNRdtSender();
+    TCPRdtSender();
+    virtual ~TCPRdtSender();
 };
-#endif //GBN_GBNRDTSENDER_H
+
+#endif //SIMPLETCP_TCPRDTSENDER_H

@@ -3,16 +3,15 @@
 //
 
 
-
 #include "Global.h"
-#include "GBNRdtReceiver.h"
+#include "TCPRdtReceiver.h"
 
 
-GBNRdtReceiver::GBNRdtReceiver():expectSequenceNumberRcvd(1)
+TCPRdtReceiver::TCPRdtReceiver():expectSequenceNumberRcvd(0)
 {
-    lastAckPkt.acknum = -1; //初始状态下，上次发送的确认包的确认序号为-1，使得当第一个接受的数据包出错时该确认报文的确认号为-1
+    lastAckPkt.acknum = 0;
     lastAckPkt.checksum = 0;
-    lastAckPkt.seqnum = -1;	//忽略该字段
+    lastAckPkt.seqnum = -1;
     for(int i = 0; i < Configuration::PAYLOAD_SIZE;i++){
         lastAckPkt.payload[i] = '.';
     }
@@ -20,11 +19,11 @@ GBNRdtReceiver::GBNRdtReceiver():expectSequenceNumberRcvd(1)
 }
 
 
-GBNRdtReceiver::~GBNRdtReceiver()
+TCPRdtReceiver::~TCPRdtReceiver()
 {
 }
 
-void GBNRdtReceiver::receive(const Packet &packet) {
+void TCPRdtReceiver::receive(const Packet &packet) {
     //检查校验和是否正确
     int checkSum = pUtils->calculateCheckSum(packet);
 
@@ -37,13 +36,12 @@ void GBNRdtReceiver::receive(const Packet &packet) {
         memcpy(msg.data, packet.payload, sizeof(packet.payload));
         pns->delivertoAppLayer(RECEIVER, msg);
 
-        lastAckPkt.acknum = packet.seqnum; //确认序号等于收到的报文序号
+        lastAckPkt.acknum = packet.seqnum + sizeof(packet.payload);
         lastAckPkt.checksum = pUtils->calculateCheckSum(lastAckPkt);
         pUtils->printPacket("接收方发送确认报文", lastAckPkt);
         pns->sendToNetworkLayer(SENDER, lastAckPkt);	//调用模拟网络环境的sendToNetworkLayer，通过网络层发送确认报文到对方
 
-        this->expectSequenceNumberRcvd++;
-        this->expectSequenceNumberRcvd %= MAX_SEQ;
+        this->expectSequenceNumberRcvd = lastAckPkt.acknum;
     }
     else {
         if (checkSum != packet.checksum) {

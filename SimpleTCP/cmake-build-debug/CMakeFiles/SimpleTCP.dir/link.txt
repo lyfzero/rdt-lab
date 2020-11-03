@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/SimpleTCP.dir/src/TCP.cpp.o CMakeFiles/SimpleTCP.dir/src/TCPRdtReceiver.cpp.o CMakeFiles/SimpleTCP.dir/src/TCPRdtSender.cpp.o  -o ../bin/SimpleTCP  ../lib/libnetsim.a 

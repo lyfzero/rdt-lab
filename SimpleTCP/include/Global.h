@@ -2,20 +2,25 @@
 // Created by lyf on 2020/11/2.
 //
 
-#ifndef GBN_GLOBAL_H
-#define GBN_GLOBAL_H
+#ifndef SIMPLETCP_GLOBAL_H
+#define SIMPLETCP_GLOBAL_H
+
 
 #include "Tool.h"
 #include "NetworkService.h"
-#include <cstdlib>
+#include <stdlib.h>
 #include <iostream>
 #include <fstream>
-#include <cstring>
+#include <string.h>
 using namespace std;
-#define GBN_WINDOW_SIZE 4
-#define SEQ_BIT 3
-#define MAX_SEQ (1 << SEQ_BIT)
+#define TCP_N 15000
 extern  Tool *pUtils;						//指向唯一的工具类实例，只在main函数结束前delete
 extern  NetworkService *pns;				//指向唯一的模拟网络环境类实例，只在main函数结束前delete
+static inline bool before(unsigned int  seq1, unsigned int  seq2)
+{
+    return (int)(seq1-seq2) < 0;
+}
+#define after(seq2, seq1) before(seq1, seq2)
 
-#endif //GBN_GLOBAL_H
+
+#endif //SIMPLETCP_GLOBAL_H

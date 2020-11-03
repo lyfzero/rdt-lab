@@ -15,7 +15,7 @@ RdtReceiver.h
 ../include/GBNRdtSender.h
 RdtSender.h
 ../include/RdtSender.h
-deque
+vector
 -
 
 ../include/Global.h
@@ -65,12 +65,6 @@ GBNRdtReceiver.h
 /home/lyf/network/rdt-lab/GBN/src/GBNRdtReceiver.h
 GBNRdtSender.h
 /home/lyf/network/rdt-lab/GBN/src/GBNRdtSender.h
-
-/home/lyf/network/rdt-lab/GBN/src/GBNRdtReceiver.cpp
-Global.h
-/home/lyf/network/rdt-lab/GBN/src/Global.h
-GBNRdtReceiver.h
-/home/lyf/network/rdt-lab/GBN/src/GBNRdtReceiver.h
 
 /home/lyf/network/rdt-lab/GBN/src/GBNRdtSender.cpp
 Global.h

@@ -7,9 +7,9 @@
 #include "TCPRdtReceiver.h"
 
 
-TCPRdtReceiver::TCPRdtReceiver():expectSequenceNumberRcvd(0)
+TCPRdtReceiver::TCPRdtReceiver():expectSequenceNumberRcvd(1)
 {
-    lastAckPkt.acknum = 0;
+    lastAckPkt.acknum = -1;
     lastAckPkt.checksum = 0;
     lastAckPkt.seqnum = -1;
     for(int i = 0; i < Configuration::PAYLOAD_SIZE;i++){
@@ -36,12 +36,13 @@ void TCPRdtReceiver::receive(const Packet &packet) {
         memcpy(msg.data, packet.payload, sizeof(packet.payload));
         pns->delivertoAppLayer(RECEIVER, msg);
 
-        lastAckPkt.acknum = packet.seqnum + sizeof(packet.payload);
+        lastAckPkt.acknum = packet.seqnum;
         lastAckPkt.checksum = pUtils->calculateCheckSum(lastAckPkt);
         pUtils->printPacket("接收方发送确认报文", lastAckPkt);
         pns->sendToNetworkLayer(SENDER, lastAckPkt);	//调用模拟网络环境的sendToNetworkLayer，通过网络层发送确认报文到对方
 
-        this->expectSequenceNumberRcvd = lastAckPkt.acknum;
+        this->expectSequenceNumberRcvd++;
+        expectSequenceNumberRcvd %= MAX_SEQ;
     }
     else {
         if (checkSum != packet.checksum) {

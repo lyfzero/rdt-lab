@@ -6,19 +6,18 @@
 #define SIMPLETCP_TCPRDTSENDER_H
 
 #include "RdtSender.h"
-#include <deque>
+#include <vector>
+#include <map>
 class TCPRdtSender :public RdtSender
 {
 private:
-    unsigned int expectSequenceNumberSend;	// 下一个发送序号
     bool waitingState;				// 是否处于等待Ack的状态
+    int base;
+    int nextSeqNum;
+    vector<Packet *> PkgVec;
+    map<int, int> ackCnt;
 
-    unsigned int base;
-    deque<Packet> pktQueue;
-
-    bool timer_status;
-    int accumulate_sum;
-
+    void printWindow();
 public:
 
     bool getWaitingState();

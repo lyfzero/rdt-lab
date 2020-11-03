@@ -40,37 +40,17 @@ DataStructure.h
 DataStructure.h
 ../include/DataStructure.h
 
-../include/TCPRdtReceiver.h
-RdtReceiver.h
-../include/RdtReceiver.h
-
 ../include/TCPRdtSender.h
 RdtSender.h
 ../include/RdtSender.h
-deque
+vector
+-
+map
 -
 
 ../include/Tool.h
 DataStructure.h
 ../include/DataStructure.h
-
-/home/lyf/network/rdt-lab/SimpleTCP/src/TCP.cpp
-Global.h
-/home/lyf/network/rdt-lab/SimpleTCP/src/Global.h
-RdtSender.h
-/home/lyf/network/rdt-lab/SimpleTCP/src/RdtSender.h
-RdtReceiver.h
-/home/lyf/network/rdt-lab/SimpleTCP/src/RdtReceiver.h
-TCPRdtReceiver.h
-/home/lyf/network/rdt-lab/SimpleTCP/src/TCPRdtReceiver.h
-TCPRdtSender.h
-/home/lyf/network/rdt-lab/SimpleTCP/src/TCPRdtSender.h
-
-/home/lyf/network/rdt-lab/SimpleTCP/src/TCPRdtReceiver.cpp
-Global.h
-/home/lyf/network/rdt-lab/SimpleTCP/src/Global.h
-TCPRdtReceiver.h
-/home/lyf/network/rdt-lab/SimpleTCP/src/TCPRdtReceiver.h
 
 /home/lyf/network/rdt-lab/SimpleTCP/src/TCPRdtSender.cpp
 Global.h
